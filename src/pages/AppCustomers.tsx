@@ -1,17 +1,31 @@
 import React, { ReactElement } from "react";
-import { User } from "../App";
+import { useState } from "react";
+import CustomersList from "../components/Customers";
 
-interface UserProps {
-  users: User;
+export interface User {
+  name: string;
+  surname: string;
+  id: number;
 }
+const customersList: User[] = [
+  { name: "Marko", surname: "Jovanovic", id: 1 },
+  { name: "Milan", surname: "Jovano", id: 2 },
+  { name: "Milos", surname: "Jovanovi", id: 3 },
+];
 
 const AppCustomers: React.FC = (): ReactElement => {
-  const customers: User[] = [
-    { name: "Marko", surname: "Jovanovic", id: 1 },
-    { name: "Milan", surname: "Jovano", id: 1 },
-    { name: "Milos", surname: "Jovanovi", id: 3 },
-  ];
-  return <h1>Customer Strana</h1>;
+  const [customers, setCustomers] = useState<User[]>(customersList);
+
+  const handleDeleteCustomer = (customerId: number) => {
+    setCustomers(customers.filter((customer) => customer.id !== customerId));
+  };
+  return (
+    <div>
+      {customers.map((customer, id) => (
+        <CustomersList key={id} customers={customer} handleDeleteCustomer={() =>handleDeleteCustomer(customer.id)} />
+      ))}
+    </div>
+  );
 };
 
 export default AppCustomers;

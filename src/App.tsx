@@ -4,12 +4,6 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import AppCustomers from "./pages/AppCustomers";
 import AppProducts from "./pages/AppProducts";
 
-export interface User {
-  name: string;
-  surname: string;
-  id: number;
-}
-
 function App() {
   return (
     <BrowserRouter>
