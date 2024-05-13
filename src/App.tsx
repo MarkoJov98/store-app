@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import AppCustomers from "./pages/AppCustomers";
+import AppProducts from "./pages/AppProducts";
+
+export interface User {
+  name: string;
+  surname: string;
+  id: number;
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header>Ovo je neki header</header>
+
+        <main>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/customers">Customers</Link>
+              </li>
+              <li>
+                <Link to="/products">Products</Link>
+              </li>
+            </ul>
+          </nav>
+        </main>
+        <Routes>
+          <Route path="/customers" element={<AppCustomers />} />
+          <Route path="/products" element={<AppProducts />} />
+        </Routes>
+        <footer>Created by Me</footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
